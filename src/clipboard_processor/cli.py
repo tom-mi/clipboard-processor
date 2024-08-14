@@ -5,6 +5,7 @@ import time
 
 from clipboard_processor.input import PyperclipInput, XclipPrimaryInput
 from clipboard_processor.output import NotifyOutput, StdoutOutput
+from clipboard_processor.output.ui import UiOutput
 from clipboard_processor.plugins import *
 
 INPUTS = [
@@ -24,6 +25,7 @@ PLUGINS = [
 OUTPUTS = [
     NotifyOutput,
     StdoutOutput,
+    UiOutput,
 ]
 
 logger = logging.getLogger(__name__)
