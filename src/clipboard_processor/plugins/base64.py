@@ -11,7 +11,7 @@ class Base64Plugin(Plugin):
 
     @classmethod
     def name(cls) -> str:
-        pass
+        return 'base64'
 
     @classmethod
     def is_available(cls) -> bool:

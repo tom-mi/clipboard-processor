@@ -1,9 +1,10 @@
 import argparse
+import logging
 import sys
 import time
 
 from clipboard_processor.input import PyperclipInput, XclipPrimaryInput
-from clipboard_processor.output import NotifyOutput
+from clipboard_processor.output import NotifyOutput, StdoutOutput
 from clipboard_processor.plugins import *
 
 INPUTS = [
@@ -20,10 +21,18 @@ PLUGINS = [
     VinPlugin,
 ]
 
+OUTPUTS = [
+    NotifyOutput,
+    StdoutOutput,
+]
+
+logger = logging.getLogger(__name__)
+
 
 def main():
     available_plugin_names = [p.name() for p in PLUGINS if p.is_available()]
     available_input_names = [i.name() for i in INPUTS if i.is_available()]
+    available_output_names = [o.name() for o in OUTPUTS if o.is_available()]
 
     if not available_plugin_names:
         print('No plugins available. Please check README and install dependencies if needed. Exiting.')
@@ -34,24 +43,23 @@ def main():
         sys.exit(1)
 
     parser = argparse.ArgumentParser(description='Automatic clipboard processor')
-    plugin_group = parser.add_mutually_exclusive_group()
-    plugin_group.add_argument('--all', action='store_true', help='Process all clipboard data', default=False)
-    plugin_group.add_argument('-p', '--plugin', action='append',
-                              help='Process clipboard data with specific plugin',
-                              choices=available_plugin_names, default=[])
-    parser.add_argument('--input', action='store', help='Select input method',
+    parser.add_argument('-p', '--plugin', action='append',
+                        help='Process clipboard data with specific plugin. '
+                             'If no plugin is specified, all available plugins will be used.',
+                        choices=available_plugin_names, default=[])
+    parser.add_argument('-i', '--input', action='store', help='Select input method',
                         choices=available_input_names, default=available_input_names[0])
+    parser.add_argument('-o', '--output', action='append', help='Select output method. Defaults to stdout',
+                        choices=available_output_names)
+
     args = parser.parse_args()
 
-    active_plugins = []
-    if args.all:
-        active_plugins = [p() for p in PLUGINS]
-    elif len(args.plugin) > 0:
-        active_plugins = [p() for p in PLUGINS if p.name() in args.plugin]
+    if len(args.plugin) == 0:
+        active_plugins = [p() for p in PLUGINS if p.name() in available_plugin_names]
     else:
-        parser.error('No plugins specified. Exiting.')
+        active_plugins = [p() for p in PLUGINS if p.name() in args.plugin]
 
-    outputs = [NotifyOutput()]
+    outputs = [o() for o in OUTPUTS if o.name() in (args.output or ['stdout'])]
     input_ = [i for i in INPUTS if i.name() == args.input][0]()
 
     last_value = None
@@ -75,6 +83,8 @@ def main():
             time.sleep(0.1)
         except KeyboardInterrupt:
             break
+        except Exception as e:
+            logger.warning('Error occurred during processing', exc_info=e)
 
 
 def _trim(s: str, max_length: int) -> str:

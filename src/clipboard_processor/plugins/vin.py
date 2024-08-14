@@ -26,10 +26,10 @@ class VinPlugin(Plugin):
         if not self._regex.match(data):
             return []
         info = vininfo.Vin(data)
-        if not info.verify_checksum():
-            return []
 
         result = [k + ': ' + v for k, v in info.annotate().items()]
+        if not info.verify_checksum():
+            return result + ['Checksum invalid!']
         if info.details:
             for k, v in info.details.annotate().items():
                 result.append(k + ': ' + v)

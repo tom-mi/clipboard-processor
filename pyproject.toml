@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Thomas Reifenberger <tom-mi@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "clipboard_processor", from = "src"}]
+packages = [{ include = "clipboard_processor", from = "src" }]
 
 [tool.poetry.scripts]
 clipboard-processor = "clipboard_processor.cli:main"
@@ -12,11 +12,22 @@ clipboard-processor = "clipboard_processor.cli:main"
 [tool.poetry.dependencies]
 python = ">=3.9,<3.13"
 pyperclip = "^1.9.0"
-desktop-notifier = "^5.0.1"
-vininfo = "^1.8.0"
-python-ulid = "^2.7.0"
-pyjwt = {extras = ["crypto"], version = "^2.8.0"}
+desktop-notifier = { version = "^5.0.1", optional = true }
+vininfo = { version = "^1.8.0", optional = true }
+python-ulid = { version = "^2.7.0", optional = true }
+pyjwt = { extras = ["crypto"], version = "^2.8.0", optional = true }
 
+[tool.poetry.extras]
+jwt = ["pyjwt"]
+vin = ["vininfo"]
+ulid = ["python-ulid"]
+notify = ["desktop-notifier"]
+
+all = ["pyjwt", "vininfo", "python-ulid", "desktop-notifier"]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
 
 [build-system]
 requires = ["poetry-core"]
