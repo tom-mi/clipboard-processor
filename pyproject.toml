@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -69,4 +69,7 @@ python = ["3.12"]
 installation = ["minimal"]
 
 [tool.hatch.version]
-path = "src/clipboard_processor/__about__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/clipboard_processor/_version.py"
