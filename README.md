@@ -1,5 +1,7 @@
 # clipboard-processor
 
+![CI Build](https://github.com/tom-mi/clipboard-processor/actions/workflows/ci.yml/badge.svg)
+
 Process clipboard content and show helpful overlays or notifications based on the content,
 e.g. parse UNIX timestamps, AWS account IDs, VINs, base64 strings and more.
 
