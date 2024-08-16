@@ -61,7 +61,7 @@ def main():
     else:
         active_plugins = [p() for p in PLUGINS if p.name() in args.plugin]
 
-    outputs = [o() for o in OUTPUTS if o.name() in (args.output or ['stdout'])]
+    outputs = [o() for o in OUTPUTS if o.name() in (args.output or ['ui'])]
     input_ = [i for i in INPUTS if i.name() == args.input][0]()
 
     last_value = None
