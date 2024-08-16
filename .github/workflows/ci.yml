@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Hatch
+      uses: pypa/hatch@a3c83ab3d481fbc2dc91dd0088628817488dd1d5
+    - name: Run tests
+      run: hatch test --all
