@@ -22,7 +22,7 @@ def empty_clipboard():
 
 def test_cli_without_arguments():
     # when
-    with run_cli() as proc:
+    with run_cli('--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(BASE64_DATA)
         time.sleep(SLEEP_PROCESSING_SECONDS)
@@ -38,7 +38,7 @@ def test_cli_without_arguments():
 
 def test_cli_with_plugin_matching_input():
     # when
-    with run_cli('--plugin', 'base64') as proc:
+    with run_cli('--plugin', 'base64', '--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(BASE64_DATA)
         time.sleep(SLEEP_PROCESSING_SECONDS)
@@ -54,7 +54,7 @@ def test_cli_with_plugin_matching_input():
 
 def test_cli_with_plugin_argument_not_matching_input():
     # when
-    with run_cli('--plugin', 'unixtime') as proc:
+    with run_cli('--plugin', 'unixtime', '--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(BASE64_DATA)
         time.sleep(SLEEP_PROCESSING_SECONDS)
@@ -70,7 +70,7 @@ def test_cli_with_plugin_argument_not_matching_input():
 @pytest.mark.full_installation
 def test_cli_with_optional_feature_available():
     # when
-    with run_cli() as proc:
+    with run_cli('--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(VIN)
         time.sleep(SLEEP_PROCESSING_SECONDS)
@@ -87,7 +87,7 @@ def test_cli_with_optional_feature_available():
 @pytest.mark.minimal_installation
 def test_cli_with_optional_feature_not_available():
     # when
-    with run_cli() as proc:
+    with run_cli('--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(VIN)
         time.sleep(SLEEP_PROCESSING_SECONDS)
