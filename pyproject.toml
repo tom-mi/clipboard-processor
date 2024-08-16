@@ -1,34 +1,72 @@
-[tool.poetry]
-name = "clipboard-processor"
-version = "0.1.0"
-description = ""
-authors = ["Thomas Reifenberger <tom-mi@users.noreply.github.com>"]
-readme = "README.md"
-packages = [{ include = "clipboard_processor", from = "src" }]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.scripts]
+[project]
+name = "clipboard-processor"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = []
+authors = [
+    { name = "Thomas Reifenberger", email = "tom-mi@users.noreply.github.com" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pyperclip>=1.9.0",
+]
+[project.optional-dependencies]
+jwt = [
+    "pyjwt[crypto]",
+]
+vin = [
+    "vininfo",
+]
+ulid = [
+    "python-ulid",
+]
+notify = [
+    "desktop-notifier",
+]
+all = [
+    "clipboard-processor[jwt,vin,ulid,notify]",
+]
+
+[project.scripts]
 clipboard-processor = "clipboard_processor.cli:main"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<3.13"
-pyperclip = "^1.9.0"
-desktop-notifier = { version = "^5.0.1", optional = true }
-vininfo = { version = "^1.8.0", optional = true }
-python-ulid = { version = "^2.7.0", optional = true }
-pyjwt = { extras = ["crypto"], version = "^2.8.0", optional = true }
+[tool.hatch.envs.default]
+dependencies = [
+    "pytest",
+]
+features = [
+    "all",
+]
+path = ".venv"
 
-[tool.poetry.extras]
-jwt = ["pyjwt"]
-vin = ["vininfo"]
-ulid = ["python-ulid"]
-notify = ["desktop-notifier"]
+[tool.hatch.envs.hatch-test]
+extra-args = ["--strict-markers"]
 
-all = ["pyjwt", "vininfo", "python-ulid", "desktop-notifier"]
+[tool.hatch.envs.hatch-test.overrides]
+matrix.installation.extra-args = { value = ["--without-extra-dependencies"], if = ["minimal"] }
+matrix.installation.features = [{ value = "all", if = ["full"] }]
 
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.9", "3.10", "3.11", "3.12"]
+installation = ['full']
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.2"
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.12"]
+installation = ["minimal"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.hatch.version]
+path = "src/clipboard_processor/__about__.py"

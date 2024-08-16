@@ -1,4 +1,3 @@
-# test valid and invalid unixtimes
 from clipboard_processor.plugins import UnixTimePlugin
 
 
