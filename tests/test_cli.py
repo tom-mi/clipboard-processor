@@ -20,7 +20,7 @@ def empty_clipboard():
     copy_to_clipboard('')
 
 
-def test_cli_without_arguments():
+def test_cli_with_default_plugins():
     # when
     with run_cli('--output', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)

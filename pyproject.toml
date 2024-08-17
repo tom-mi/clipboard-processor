@@ -45,28 +45,39 @@ all = [
 clipboard-processor = "clipboard_processor.cli:main"
 
 [tool.hatch.envs.default]
+python = "3.12"
 dependencies = [
     "pytest",
+    "pytest-image-snapshot",
 ]
 features = [
     "all",
 ]
+
+[tool.hatch.envs.dev]
 path = ".venv"
 
 [tool.hatch.envs.hatch-test]
-extra-args = ["--strict-markers"]
-
-[tool.hatch.envs.hatch-test.overrides]
-matrix.installation.extra-args = { value = ["--without-extra-dependencies"], if = ["minimal"] }
-matrix.installation.features = [{ value = "all", if = ["full"] }]
+extra-args = ["--strict-markers", "--suite", "full"]
+dependencies = [
+    "pytest",
+    "pytest-image-snapshot",
+]
+features = [
+    "all"
+]
 
 [[tool.hatch.envs.hatch-test.matrix]]
 python = ["3.9", "3.10", "3.11", "3.12"]
-installation = ['full']
 
-[[tool.hatch.envs.hatch-test.matrix]]
-python = ["3.12"]
-installation = ["minimal"]
+[tool.hatch.envs.test-minimal]
+features = []
+
+[tool.hatch.envs.test-minimal.scripts]
+run = "pytest --strict-markers --suite minimal"
+
+[tool.hatch.envs.test-snapshot.scripts]
+run = "xvfb-run -w 1 pytest --strict-markers --suite snapshot --image-snapshot-save-diff"
 
 [tool.hatch.version]
 source = "vcs"

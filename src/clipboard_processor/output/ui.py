@@ -26,6 +26,8 @@ class UiOutput(Output):
             root.attributes('-type', 'dialog')
             root.attributes('-topmost', True)
             root.attributes('-alpha', 0.9)
+            # name
+            root.title('clipboard-processor')
             root.overrideredirect(True)
             abs_coord_x = root.winfo_pointerx() - root.winfo_vrootx()
             abs_coord_y = root.winfo_pointery() - root.winfo_vrooty()

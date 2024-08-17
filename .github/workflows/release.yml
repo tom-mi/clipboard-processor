@@ -23,7 +23,11 @@ jobs:
       - name: Install Hatch
         uses: pypa/hatch@a3c83ab3d481fbc2dc91dd0088628817488dd1d5
       - name: Run tests
-        run: xvfb-run hatch test --all
+        run: xvfb-run -w 1 hatch test --all
+      - name: Run tests for minimal installation
+        run: xvfb-run -w 1 hatch run test-minimal:run
+      - name: Run snapshot tests
+        run: hatch run test-snapshot:run # already runs in xvfb
       - name: Build
         run: hatch build
       - name: Publish package distributions to PyPI
