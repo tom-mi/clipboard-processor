@@ -26,3 +26,9 @@ jobs:
         run: xvfb-run -w 1 hatch run test-minimal:run
       - name: Run snapshot tests
         run: hatch run test-snapshot:run # already runs in xvfb
+      - name: Upload screenshots from snapshot tests
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: snapshots
+          path: tests/snapshots
