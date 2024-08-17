@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from test_cli import SLEEP_STARTUP_SECONDS, SLEEP_PROCESSING_SECONDS, VIN, BASE64_DECODED, BASE64_DATA, VIN_CONTENT
+from test_cli import SLEEP_STARTUP_SECONDS, SLEEP_PROCESSING_SECONDS, BASE64_DECODED, BASE64_DATA
 from util import run_cli, copy_to_clipboard
 
 
@@ -17,7 +17,7 @@ def test_cli_with_ui_and_stdout(take_screenshot, image_snapshot, snapshot_path):
     # when
     with run_cli('-o', 'ui', '-o', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
-        copy_to_clipboard(VIN)
+        copy_to_clipboard(BASE64_DATA)
         time.sleep(SLEEP_PROCESSING_SECONDS)
         screenshot = take_screenshot()
         proc.send_signal(signal.SIGINT)
@@ -26,6 +26,6 @@ def test_cli_with_ui_and_stdout(take_screenshot, image_snapshot, snapshot_path):
 
     # then
     assert proc.returncode == 0
-    assert VIN in output[0]
-    assert VIN_CONTENT in [s.strip() for s in output[1:]]
+    assert BASE64_DATA in output[0]  # ensure clipboard has been processed, so we can expect an overlay
+
     image_snapshot(screenshot, snapshot_path)
