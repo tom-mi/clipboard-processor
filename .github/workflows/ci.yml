@@ -27,7 +27,7 @@ jobs:
       - name: Run snapshot tests
         run: hatch run test-snapshot:run # already runs in xvfb
       - name: Upload screenshots from snapshot tests
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: snapshots
