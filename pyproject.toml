@@ -49,6 +49,7 @@ python = "3.12"
 dependencies = [
     "pytest",
     "pytest-image-snapshot",
+    "python-dbusmock",
 ]
 features = [
     "all",
@@ -62,6 +63,7 @@ extra-args = ["--strict-markers", "--suite", "full"]
 dependencies = [
     "pytest",
     "pytest-image-snapshot",
+    "python-dbusmock",
 ]
 features = [
     "all"

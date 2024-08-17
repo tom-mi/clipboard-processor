@@ -1,3 +1,7 @@
+import subprocess
+
+import dbus
+import dbusmock
 import pytest
 from PIL import ImageGrab
 
@@ -7,6 +11,8 @@ SNAPSHOT_MARKER = 'snapshot'
 SUITE_FULL = 'full'
 SUITE_MINIMAL = 'minimal'
 SUITE_SNAPSHOT = 'snapshot'
+
+pytest_plugins = "dbusmock.pytest_fixtures"
 
 
 def pytest_addoption(parser):
@@ -47,3 +53,11 @@ def take_screenshot():
         return ImageGrab.grab()
 
     return func
+
+
+@pytest.fixture
+def dbus_notifications_mock(dbusmock_session):
+    assert dbusmock_session
+    print(dbusmock_session.address)
+    with dbusmock.SpawnedMock.spawn_with_template("notification_daemon") as server:
+        yield server
