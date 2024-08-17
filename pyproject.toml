@@ -77,7 +77,7 @@ features = []
 run = "pytest --strict-markers --suite minimal"
 
 [tool.hatch.envs.test-snapshot.scripts]
-run = "xvfb-run -w 1 pytest --strict-markers --suite snapshot --image-snapshot-save-diff"
+run = "xvfb-run -a -w 1 pytest --strict-markers --suite snapshot --image-snapshot-save-diff"
 
 [tool.hatch.version]
 source = "vcs"
