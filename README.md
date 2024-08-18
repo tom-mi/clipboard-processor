@@ -75,3 +75,49 @@ There are different output modes available:
 | `notify` | Use [desktop-notifier](https://github.com/SamSchott/desktop-notifier) to show the output in a desktop notification. |
 | `stdout` | Print the result of the processing to the standard output. This is mostly intended for debugging and testing.       |
 
+## Development
+
+This project uses [Hatch](https://hatch.pypa.io) for managing the development environment.
+
+### Prerequisites
+
+Install `xvfb` for running the snapshot tests.
+
+TODO: some more effort might be necessary to support Windows and macOS.
+
+### Run all tests
+
+```bash
+hatch test --all
+hatch run test-minimal:run
+hatch run test-snapshot:run
+```
+
+### Create environment for IntelliJ
+
+Create a development environment in `.venv/` which can easily be used by IntelliJ or other IDEs:
+
+```bash
+hatch env create dev
+```
+
+### Run development version
+
+```bash
+hatch shell
+clipboard-processor
+```
+
+or
+
+```bash
+hatch run clipboard-processor
+```
+
+### Troubleshooting
+
+In case dependencies are not synced into an existing env, try removing all environments:
+
+```bash
+hatch env prune
+```
