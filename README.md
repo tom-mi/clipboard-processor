@@ -60,6 +60,7 @@ All decoding functionality is provided via plugins. Per default, all available p
 |------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | `aws_account_id` | Show AWS account name for given AWS account ID by parsing `~/.aws/config`                                   | -                                                    |
 | `base64`         | Decode base64 strings                                                                                       | -                                                    |
+| `hex-utf8`       | Decode printable UTF-8 strings from hexadecimal representation                                              | -                                                    |
 | `jwt`            | Decode JSON web tokens (JWTs)                                                                               | [PyJWT](https://github.com/jpadilla/pyjwt)           |
 | `ulid`           | Parse [ULIDs](https://github.com/ulid/spec) and show the encoded timestamp                                  | [python-ulid](https://github.com/mdomke/python-ulid) |
 | `unixtime`       | Parse UNIX timestamps and show the human-readable (ISO 8601) time                                           | -                                                    |

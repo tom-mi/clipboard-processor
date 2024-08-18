@@ -7,6 +7,7 @@ from clipboard_processor.input import PyperclipInput, XclipPrimaryInput
 from clipboard_processor.output import NotifyOutput, StdoutOutput
 from clipboard_processor.output.ui import UiOutput
 from clipboard_processor.plugins import *
+from clipboard_processor.plugins.hex import HexPlugin
 
 INPUTS = [
     PyperclipInput,
@@ -16,6 +17,7 @@ INPUTS = [
 PLUGINS = [
     AwsAccountIdPlugin,
     Base64Plugin,
+    HexPlugin,
     JwtPlugin,
     UlidPlugin,
     UnixTimePlugin,
