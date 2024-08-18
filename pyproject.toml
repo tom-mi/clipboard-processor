@@ -65,6 +65,7 @@ extra-args = ["--strict-markers", "--suite", "full"]
 dependencies = [
     "pytest",
     "pytest-image-snapshot[pixelmatch]",
+    "python-dbusmock; python_version == '3.12'",
 ]
 features = [
     "all"

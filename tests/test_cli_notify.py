@@ -20,7 +20,6 @@ def empty_clipboard():
     copy_to_clipboard('')
 
 
-# TODO make this test run in CI
 @pytest.mark.skipif(not dbusmock_available, reason="dbusmock not available")
 def test_cli_with_notification_and_stdout(dbus_notifications_mock):
     # when
