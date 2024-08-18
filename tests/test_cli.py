@@ -13,6 +13,7 @@ VIN_CONTENT = 'Manufacturer: Subaru'
 
 SLEEP_STARTUP_SECONDS = 0.5
 SLEEP_PROCESSING_SECONDS = 0.2
+SLEEP_PROCESSING_SECONDS_UI = 2
 
 
 @pytest.fixture(autouse=True)

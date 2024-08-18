@@ -3,8 +3,6 @@ from threading import Thread
 import pyperclip
 
 from clipboard_processor.output._base import Output
-import tkinter as tk
-from tkinter import ttk
 
 
 class UiOutput(Output):
@@ -19,6 +17,8 @@ class UiOutput(Output):
 
     def show(self, title: str, content: str):
         def run_tk():
+            import tkinter as tk
+            from tkinter import ttk
 
             root = tk.Tk()
             frm = tk.Frame(root, background='black', padx=4, pady=4)

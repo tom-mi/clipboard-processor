@@ -16,7 +16,11 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get install xclip xvfb python3-tk libdbus-1-dev
+        run: sudo apt-get install xclip libdbus-1-dev
+      - name: Install Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - uses: actions/checkout@v4
       - name: Install Hatch
         uses: pypa/hatch@a3c83ab3d481fbc2dc91dd0088628817488dd1d5

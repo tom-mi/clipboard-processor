@@ -48,7 +48,7 @@ clipboard-processor = "clipboard_processor.cli:main"
 python = "3.12"
 dependencies = [
     "pytest",
-    "pytest-image-snapshot",
+    "pytest-image-snapshot[pixelmatch]",
 ]
 features = [
     "all",
@@ -64,7 +64,7 @@ path = ".venv"
 extra-args = ["--strict-markers", "--suite", "full"]
 dependencies = [
     "pytest",
-    "pytest-image-snapshot",
+    "pytest-image-snapshot[pixelmatch]",
 ]
 features = [
     "all"

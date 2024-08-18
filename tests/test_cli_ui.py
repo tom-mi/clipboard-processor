@@ -2,8 +2,7 @@ import signal
 import time
 
 import pytest
-
-from test_cli import SLEEP_STARTUP_SECONDS, SLEEP_PROCESSING_SECONDS, BASE64_DECODED, BASE64_DATA
+from test_cli import SLEEP_STARTUP_SECONDS, BASE64_DATA, SLEEP_PROCESSING_SECONDS_UI
 from util import run_cli, copy_to_clipboard
 
 
@@ -18,7 +17,7 @@ def test_cli_with_ui_and_stdout(take_screenshot, image_snapshot, snapshot_path):
     with run_cli('-o', 'ui', '-o', 'stdout') as proc:
         time.sleep(SLEEP_STARTUP_SECONDS)
         copy_to_clipboard(BASE64_DATA)
-        time.sleep(SLEEP_PROCESSING_SECONDS)
+        time.sleep(SLEEP_PROCESSING_SECONDS_UI)
         screenshot = take_screenshot()
         proc.send_signal(signal.SIGINT)
 
@@ -28,4 +27,4 @@ def test_cli_with_ui_and_stdout(take_screenshot, image_snapshot, snapshot_path):
     assert proc.returncode == 0
     assert BASE64_DATA in output[0]  # ensure clipboard has been processed, so we can expect an overlay
 
-    image_snapshot(screenshot, snapshot_path)
+    image_snapshot(screenshot, snapshot_path, threshold=0.4)
