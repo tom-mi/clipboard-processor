@@ -8,6 +8,7 @@ from clipboard_processor.output import NotifyOutput, StdoutOutput
 from clipboard_processor.output.ui import UiOutput
 from clipboard_processor.plugins import *
 from clipboard_processor.plugins.hex import HexPlugin
+from clipboard_processor.plugins.oui import OuiPlugin
 
 INPUTS = [
     PyperclipInput,
@@ -19,6 +20,7 @@ PLUGINS = [
     Base64Plugin,
     HexPlugin,
     JwtPlugin,
+    OuiPlugin,
     UlidPlugin,
     UnixTimePlugin,
     VinPlugin,

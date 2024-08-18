@@ -31,6 +31,9 @@ jwt = [
 vin = [
     "vininfo",
 ]
+oui = [
+   "netaddr",
+]
 ulid = [
     "python-ulid",
 ]
@@ -38,7 +41,7 @@ notify = [
     "desktop-notifier",
 ]
 all = [
-    "clipboard-processor[jwt,vin,ulid,notify]",
+    "clipboard-processor[jwt,vin,oui,ulid,notify]",
 ]
 
 [project.scripts]

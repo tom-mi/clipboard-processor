@@ -62,6 +62,7 @@ All decoding functionality is provided via plugins. Per default, all available p
 | `base64`         | Decode base64 strings                                                                                       | -                                                    |
 | `hex-utf8`       | Decode printable UTF-8 strings from hexadecimal representation                                              | -                                                    |
 | `jwt`            | Decode JSON web tokens (JWTs)                                                                               | [PyJWT](https://github.com/jpadilla/pyjwt)           |
+| `oui`            | Show vendor name for given MAC address or OUI (see [IEEE OUI database](https://standards-oui.ieee.org/))    | [netaddr](https://github.com/netaddr/netaddr)        |
 | `ulid`           | Parse [ULIDs](https://github.com/ulid/spec) and show the encoded timestamp                                  | [python-ulid](https://github.com/mdomke/python-ulid) |
 | `unixtime`       | Parse UNIX timestamps and show the human-readable (ISO 8601) time                                           | -                                                    |
 | `vin`            | Decode [Vehicle Identification Numbers](https://en.wikipedia.org/wiki/Vehicle_identification_number) (VINs) | [vininfo](https://github.com/idlesign/vininfo)       |
