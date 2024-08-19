@@ -58,7 +58,7 @@ All decoding functionality is provided via plugins. Per default, all available p
 
 | Plugin           | Description                                                                                                 | External library                                     |
 |------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| `aws_account_id` | Show AWS account name for given AWS account ID by parsing `~/.aws/config`                                   | -                                                    |
+| `aws-account-id` | Show AWS account name for given AWS account ID by parsing `~/.aws/config`                                   | -                                                    |
 | `base64`         | Decode base64 strings                                                                                       | -                                                    |
 | `hex-utf8`       | Decode printable UTF-8 strings from hexadecimal representation                                              | -                                                    |
 | `jwt`            | Decode JSON web tokens (JWTs)                                                                               | [PyJWT](https://github.com/jpadilla/pyjwt)           |
