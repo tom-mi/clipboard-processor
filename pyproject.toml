@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "clipboard-processor"
 dynamic = ["version"]
-description = ''
+description = 'Process clipboard content and show helpful overlays or notifications based on the content, e.g. parse UNIX timestamps, AWS account IDs, VINs, base64 strings and more.'
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
@@ -32,7 +32,7 @@ vin = [
     "vininfo",
 ]
 oui = [
-   "netaddr",
+    "netaddr",
 ]
 ulid = [
     "python-ulid",
@@ -43,6 +43,10 @@ notify = [
 all = [
     "clipboard-processor[jwt,vin,oui,ulid,notify]",
 ]
+[project.urls]
+Homepage = "https://github.com/tom-mi/clipboard-processor"
+Repository = "https://github.com/tom-mi/clipboard-processor.git"
+Issues = "https://github.com/tom-mi/clipboard-processor/issues"
 
 [project.scripts]
 clipboard-processor = "clipboard_processor.cli:main"
