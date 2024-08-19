@@ -16,6 +16,8 @@ from clipboard_processor.plugins.oui import OuiPlugin
     ('c03c5912345', []),  # invalid format
     ('c03c591234567', []),  # invalid format
     ('c03c5912345600', []),  # invalid format
+    ('c03c59_', []),  # invalid format
+    ('0c03c59', []),  # invalid format
 ])
 def test_oui(input_data, expected_output):
     assert OuiPlugin().process(input_data) == expected_output

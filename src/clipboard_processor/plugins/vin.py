@@ -12,7 +12,7 @@ class VinPlugin(Plugin):
 
     def __init__(self):
         super(VinPlugin, self).__init__()
-        self._regex = re.compile(r'[A-HJ-NPR-Z\d]{17}')
+        self._regex = re.compile(r'^[A-HJ-NPR-Z\d]{17}$')
 
     @classmethod
     def name(cls):

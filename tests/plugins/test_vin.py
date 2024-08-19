@@ -15,7 +15,8 @@ def test_valid_vin():
 @pytest.mark.full_installation
 def test_invalid_vin():
     plugin = VinPlugin()
-    assert plugin.process('JF2SHADC3DG417') == []
+    assert plugin.process('JF2SHADC3DG41700') == []  # too short
+    assert plugin.process('JF2SHADC3DG4170001') == []  # too long
 
 
 @pytest.mark.full_installation

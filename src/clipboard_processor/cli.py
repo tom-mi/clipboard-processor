@@ -34,6 +34,11 @@ OUTPUTS = [
 
 logger = logging.getLogger(__name__)
 
+_BLUE = '\033[94m'
+_GREEN = '\033[92m'
+_GRAY = '\033[90m'
+_RESET = '\033[0m'
+
 
 def main():
     available_plugin_names = [p.name() for p in PLUGINS if p.is_available()]
@@ -57,8 +62,11 @@ def main():
                         choices=available_input_names, default=available_input_names[0])
     parser.add_argument('-o', '--output', action='append', help='Select output method. Defaults to stdout',
                         choices=available_output_names)
+    parser.add_argument('--debug', action='store_true', help='Enable debug logging')
 
     args = parser.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO, format='%(message)s')
 
     if len(args.plugin) == 0:
         active_plugins = [p() for p in PLUGINS if p.name() in available_plugin_names]
@@ -76,9 +84,18 @@ def main():
                 last_value = current_value
             elif current_value != last_value:
                 last_value = current_value
+                if current_value.strip() == '':
+                    continue
+                logger.debug(f'{_GRAY}Processing: "{_BLUE}{current_value}{_GRAY}"{_RESET}')
                 results = []
                 for plugin in active_plugins:
-                    results.extend(plugin.process(current_value))
+                    results_from_plugin = plugin.process(current_value)
+                    if results_from_plugin:
+                        logger.debug(f'{_GRAY}Result from {_GREEN}{plugin.name()}{_GRAY}:{_RESET}')
+                        for result in results_from_plugin:
+                            logger.debug(f'{_BLUE}{result}{_RESET}')
+
+                    results.extend(results_from_plugin)
 
                 if results:
                     title = _trim(current_value, max_length=50)

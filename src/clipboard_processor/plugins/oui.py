@@ -7,10 +7,12 @@ try:
 except ImportError:
     netaddr = None
 
-_REGEX = re.compile(r'([0-9A-Fa-f]{2}[:-]?){2,5}([0-9A-Fa-f]{2})')
-
 
 class OuiPlugin(Plugin):
+
+    def __init__(self):
+        super().__init__()
+        self._regex = re.compile(r'^([0-9A-Fa-f]{2}[:-]?){2,5}([0-9A-Fa-f]{2})$')
 
     @classmethod
     def name(cls) -> str:
@@ -22,7 +24,7 @@ class OuiPlugin(Plugin):
 
     def process(self, data: str) -> [str]:
         results = []
-        if _REGEX.match(data):
+        if self._regex.match(data):
             if len(data) == 17:
                 data = data[0:8]
             elif len(data) == 12:
