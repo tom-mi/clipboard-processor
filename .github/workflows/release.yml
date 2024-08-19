@@ -2,7 +2,7 @@ name: Release
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 permissions:
   contents: read
@@ -32,12 +32,12 @@ jobs:
         run: xvfb-run -a -w 1 hatch run test-minimal:run
       - name: Run snapshot tests
         run: hatch run test-snapshot:run # already runs in xvfb
-               - name: Upload screenshots from snapshot tests
-               uses: actions/upload-artifact@v4
-               if: failure()
-               with:
-                 name: snapshots
-                 path: tests/snapshots
+      - name: Upload screenshots from snapshot tests
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: snapshots
+          path: tests/snapshots
       - name: Build
         run: hatch build
       - name: Publish package distributions to PyPI
