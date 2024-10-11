@@ -25,6 +25,9 @@ dependencies = [
     "pyperclip>=1.9.0",
 ]
 [project.optional-dependencies]
+cron = [
+    "cron-descriptor"
+]
 jwt = [
     "pyjwt[crypto]",
 ]
@@ -41,7 +44,7 @@ notify = [
     "desktop-notifier",
 ]
 all = [
-    "clipboard-processor[jwt,vin,oui,ulid,notify]",
+    "clipboard-processor[cron,jwt,vin,oui,ulid,notify]",
 ]
 [project.urls]
 Homepage = "https://github.com/tom-mi/clipboard-processor"

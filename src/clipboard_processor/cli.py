@@ -18,6 +18,7 @@ INPUTS = [
 PLUGINS = [
     AwsAccountIdPlugin,
     Base64Plugin,
+    CronPlugin,
     HexPlugin,
     JwtPlugin,
     OuiPlugin,

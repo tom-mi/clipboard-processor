@@ -56,16 +56,17 @@ There are different input modes available:
 
 All decoding functionality is provided via plugins. Per default, all available plugins are enabled.
 
-| Plugin           | Description                                                                                                 | External library                                     |
-|------------------|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| `aws-account-id` | Show AWS account name for given AWS account ID by parsing `~/.aws/config`                                   | -                                                    |
-| `base64`         | Decode base64 strings                                                                                       | -                                                    |
-| `hex-utf8`       | Decode printable UTF-8 strings from hexadecimal representation                                              | -                                                    |
-| `jwt`            | Decode JSON web tokens (JWTs)                                                                               | [PyJWT](https://github.com/jpadilla/pyjwt)           |
-| `oui`            | Show vendor name for given MAC address or OUI (see [IEEE OUI database](https://standards-oui.ieee.org/))    | [netaddr](https://github.com/netaddr/netaddr)        |
-| `ulid`           | Parse [ULIDs](https://github.com/ulid/spec) and show the encoded timestamp                                  | [python-ulid](https://github.com/mdomke/python-ulid) |
-| `unixtime`       | Parse UNIX timestamps and show the human-readable (ISO 8601) time                                           | -                                                    |
-| `vin`            | Decode [Vehicle Identification Numbers](https://en.wikipedia.org/wiki/Vehicle_identification_number) (VINs) | [vininfo](https://github.com/idlesign/vininfo)       |
+| Plugin           | Description                                                                                                 | External library                                              |
+|------------------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| `aws-account-id` | Show AWS account name for given AWS account ID by parsing `~/.aws/config`                                   | -                                                             |
+| `base64`         | Decode base64 strings                                                                                       | -                                                             |
+| `cron`           | Print human readable description of cron expressions                                                        | [cron-descriptor](https://github.com/Salamek/cron-descriptor) |
+| `hex-utf8`       | Decode printable UTF-8 strings from hexadecimal representation                                              | -                                                             |
+| `jwt`            | Decode JSON web tokens (JWTs)                                                                               | [PyJWT](https://github.com/jpadilla/pyjwt)                    |
+| `oui`            | Show vendor name for given MAC address or OUI (see [IEEE OUI database](https://standards-oui.ieee.org/))    | [netaddr](https://github.com/netaddr/netaddr)                 |
+| `ulid`           | Parse [ULIDs](https://github.com/ulid/spec) and show the encoded timestamp                                  | [python-ulid](https://github.com/mdomke/python-ulid)          |
+| `unixtime`       | Parse UNIX timestamps and show the human-readable (ISO 8601) time                                           | -                                                             |
+| `vin`            | Decode [Vehicle Identification Numbers](https://en.wikipedia.org/wiki/Vehicle_identification_number) (VINs) | [vininfo](https://github.com/idlesign/vininfo)                |
 
 ### Output
 
