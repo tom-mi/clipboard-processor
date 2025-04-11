@@ -10,6 +10,7 @@ from clipboard_processor.output.ui import UiOutput
 from clipboard_processor.plugins import *
 from clipboard_processor.plugins.hex import HexPlugin
 from clipboard_processor.plugins.oui import OuiPlugin
+from clipboard_processor.plugins.well_known import WellKnownPlugin
 
 INPUTS = [
     PyperclipInput,
@@ -26,6 +27,7 @@ PLUGINS = [
     UlidPlugin,
     UnixTimePlugin,
     VinPlugin,
+    WellKnownPlugin,
 ]
 
 OUTPUTS = [
@@ -126,7 +128,7 @@ def _list_plugins():
         else:
             print(f'{_BOLD}{p.name()}{_RESET} {_RED}(not available){_RESET}')
         if p.__doc__:
-            intended_doc = textwrap.indent(p.__doc__, '  ').strip()
+            intended_doc = textwrap.indent(p.__doc__.strip(), '  ')
             print(f'{_GRAY}{intended_doc}{_RESET}\n')
         print(f'{_GRAY}  Example input: {_BLUE}{p.example_input()}{_RESET}\n')
 
