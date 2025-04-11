@@ -30,4 +30,7 @@ class UlidPlugin(Plugin):
 
     @classmethod
     def example_input(cls) -> str:
-        return str(ulid.ULID())
+        if ulid is None:
+            return '01ARZ3NDEKTSV4RRFFQ69G5FAV'
+        else:
+            return str(ulid.ULID())

@@ -126,7 +126,8 @@ def _list_plugins():
         else:
             print(f'{_BOLD}{p.name()}{_RESET} {_RED}(not available){_RESET}')
         if p.__doc__:
-            print(f'{_GRAY}{textwrap.indent(p.__doc__.strip(), '  ')}{_RESET}\n')
+            intended_doc = textwrap.indent(p.__doc__, '  ').strip()
+            print(f'{_GRAY}{intended_doc}{_RESET}\n')
         print(f'{_GRAY}  Example input: {_BLUE}{p.example_input()}{_RESET}\n')
 
 def _trim(s: str, max_length: int) -> str:
