@@ -9,6 +9,10 @@ except ImportError:
 
 
 class OuiPlugin(Plugin):
+    """
+    Parse OUI (Organizationally Unique Identifier) from MAC addresses. Accepts full MAC addresses or OUI prefixes.
+    Requires the netaddr package to be installed.
+    """
 
     def __init__(self):
         super().__init__()

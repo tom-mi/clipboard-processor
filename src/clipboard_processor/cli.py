@@ -1,6 +1,7 @@
 import argparse
 import logging
 import sys
+import textwrap
 import time
 
 from clipboard_processor.input import PyperclipInput, XclipPrimaryInput
@@ -37,7 +38,9 @@ logger = logging.getLogger(__name__)
 
 _BLUE = '\033[94m'
 _GREEN = '\033[92m'
+_RED = '\033[91m'
 _GRAY = '\033[90m'
+_BOLD = '\033[1m'
 _RESET = '\033[0m'
 
 
@@ -64,10 +67,15 @@ def main():
     parser.add_argument('-o', '--output', action='append', help='Select output method. Defaults to stdout',
                         choices=available_output_names)
     parser.add_argument('--debug', action='store_true', help='Enable debug logging')
+    parser.add_argument('-l', '--list', action='store_true', help='List plugins')
 
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO, format='%(message)s')
+
+    if args.list:
+        _list_plugins()
+        sys.exit(0)
 
     if len(args.plugin) == 0:
         active_plugins = [p() for p in PLUGINS if p.name() in available_plugin_names]
@@ -110,6 +118,16 @@ def main():
         except Exception as e:
             logger.warning('Error occurred during processing', exc_info=e)
 
+
+def _list_plugins():
+    for p in sorted(PLUGINS, key=lambda x: x.name()):
+        if p.is_available():
+            print(f'{_BOLD}{p.name()}{_RESET}')
+        else:
+            print(f'{_BOLD}{p.name()}{_RESET} {_RED}(not available){_RESET}')
+        if p.__doc__:
+            print(f'{_GRAY}{textwrap.indent(p.__doc__.strip(), '  ')}{_RESET}\n')
+        print(f'{_GRAY}  Example input: {_BLUE}{p.example_input()}{_RESET}\n')
 
 def _trim(s: str, max_length: int) -> str:
     return s[:max_length] + ('...' if len(s) > max_length else '')

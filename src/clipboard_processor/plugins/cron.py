@@ -7,6 +7,10 @@ except ImportError:
 
 
 class CronPlugin(Plugin):
+    """
+    Parse cron expressions to a human-readable description
+    Requires the cron-descriptor package to be installed.
+    """
 
     @classmethod
     def name(cls) -> str:

@@ -9,6 +9,10 @@ except ImportError:
 
 
 class VinPlugin(Plugin):
+    """
+    Parse VIN (Vehicle Identification Number) strings to their human-readable representation.
+    Requires the vininfo package to be installed.
+    """
 
     def __init__(self):
         super(VinPlugin, self).__init__()

@@ -9,6 +9,11 @@ except ImportError:
 
 
 class JwtPlugin(Plugin):
+    """
+    Decode JWT tokens according to RFC 7519 to the contained JSON object.
+    Requires the PyJWT package to be installed.
+    """
+
     def __init__(self):
         super().__init__()
 

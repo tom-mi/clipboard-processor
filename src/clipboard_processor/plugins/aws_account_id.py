@@ -7,6 +7,11 @@ _CONFIG_FILE = pathlib.Path('~/.aws/config').expanduser()
 
 
 class AwsAccountIdPlugin(Plugin):
+    """
+    Parse the 12-digit AWS account ids and resolve the account name using the file ~/.aws/config.
+    The name is resolved via the parameters 'sso_account_id' and 'sso_account_name' in the config file.
+    Requires the file ~/.aws/config to be present.
+    """
 
     def __init__(self):
         import re

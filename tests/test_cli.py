@@ -3,6 +3,7 @@ import time
 
 import pytest
 
+from clipboard_processor.cli import PLUGINS
 from util import run_cli, copy_to_clipboard
 
 BASE64_DATA = 'dGVzdA=='
@@ -99,3 +100,18 @@ def test_cli_with_optional_feature_not_available():
     # then
     assert proc.returncode == 0
     assert len(output) == 0
+
+
+def test_cli_list_plugins():
+    # when
+    with run_cli('--list') as proc:
+        time.sleep(SLEEP_STARTUP_SECONDS)
+        proc.send_signal(signal.SIGINT)
+
+        output = proc.stdout.read()
+
+    # then
+    assert proc.returncode == 0
+    assert len(output) > 0
+    for p in PLUGINS:
+        assert p.name() in output

@@ -7,6 +7,10 @@ except ImportError:
 
 
 class UlidPlugin(Plugin):
+    """
+    Parse ULID (Universally Unique Lexicographically Sortable Identifier) strings to their datetime representation.
+    Requires the ulid package to be installed.
+    """
     @classmethod
     def name(cls) -> str:
         return 'ulid'
