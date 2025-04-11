@@ -2,8 +2,8 @@ import pytest
 
 from clipboard_processor.plugins import JwtPlugin
 
-VALID_JWT = ('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbk FzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.'
-             'gzSraSYS8EXBxLN _oWnFSRgCzcmJmMjLiuyu5CSpyHI=')
+VALID_JWT = ('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.'
+             'gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI=')
 
 
 @pytest.mark.full_installation

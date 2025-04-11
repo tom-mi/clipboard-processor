@@ -34,3 +34,7 @@ class VinPlugin(Plugin):
             for k, v in info.details.annotate().items():
                 result.append(k + ': ' + v)
         return result
+
+    @classmethod
+    def example_input(cls) -> str:
+        return '1HGCM82633A123456'

@@ -4,20 +4,20 @@ from clipboard_processor.plugins.oui import OuiPlugin
 
 @pytest.mark.full_installation
 @pytest.mark.parametrize('input_data, expected_output', [
-    ('c0:3c:59:12:34:56', ['Intel Corporate (C0-3C-59)']),
-    ('c0-3c-59-12-34-56', ['Intel Corporate (C0-3C-59)']),
-    ('c03c59123456', ['Intel Corporate (C0-3C-59)']),
-    ('c0-3c-59', ['Intel Corporate (C0-3C-59)']),
-    ('c03c59', ['Intel Corporate (C0-3C-59)']),
-    ('c0:3c:59', ['Intel Corporate (C0-3C-59)']),
+    ('B8:27:EB:12:34:56', ['Raspberry Pi Foundation (B8-27-EB)']),
+    ('b8-27-eb-12-34-56', ['Raspberry Pi Foundation (B8-27-EB)']),
+    ('b827eb123456', ['Raspberry Pi Foundation (B8-27-EB)']),
+    ('b8-27-eb', ['Raspberry Pi Foundation (B8-27-EB)']),
+    ('b827eb', ['Raspberry Pi Foundation (B8-27-EB)']),
+    ('b8:27:eb', ['Raspberry Pi Foundation (B8-27-EB)']),
     ('01:23:45', []),  # not registered
-    ('c0/3c/59', []),  # invalid format
-    ('c03c', []),  # invalid format
-    ('c03c5912345', []),  # invalid format
-    ('c03c591234567', []),  # invalid format
-    ('c03c5912345600', []),  # invalid format
-    ('c03c59_', []),  # invalid format
-    ('0c03c59', []),  # invalid format
+    ('b8/27/eb', []),  # invalid format
+    ('b8)7', []),  # invalid format
+    ('b827eb12345', []),  # invalid format
+    ('b827eb1234567', []),  # invalid format
+    ('b827eb12345600', []),  # invalid format
+    ('b827eb_', []),  # invalid format
+    ('0b827eb', []),  # invalid format
 ])
 def test_oui(input_data, expected_output):
     assert OuiPlugin().process(input_data) == expected_output

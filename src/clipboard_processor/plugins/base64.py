@@ -25,3 +25,7 @@ class Base64Plugin(Plugin):
             except ValueError:
                 pass
         return results
+
+    @classmethod
+    def example_input(cls) -> str:
+        return 'SGVsbG8gV29ybGQh'

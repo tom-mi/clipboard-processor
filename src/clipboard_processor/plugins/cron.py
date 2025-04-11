@@ -24,3 +24,8 @@ class CronPlugin(Plugin):
         except cron_descriptor.Exception.FormatException:
             pass
         return results
+
+    @classmethod
+    def example_input(cls) -> str:
+        return '0 5 ? * MON-FRI *'
+

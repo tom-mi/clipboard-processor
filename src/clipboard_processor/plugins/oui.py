@@ -35,3 +35,7 @@ class OuiPlugin(Plugin):
             except netaddr.core.NotRegisteredError:
                 pass
         return results
+
+    @classmethod
+    def example_input(cls) -> str:
+        return 'B8:27:EB:12:34:56'

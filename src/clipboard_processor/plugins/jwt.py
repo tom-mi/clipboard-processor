@@ -39,3 +39,8 @@ class JwtPlugin(Plugin):
         if missing_padding != 0:
             segments[1] += '=' * (4 - missing_padding)
         return '.'.join(segments)
+
+    @classmethod
+    def example_input(cls) -> str:
+        return ('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.'
+                'gzSraSYS8EXBxLN_oWnFSRgCzcmJmMjLiuyu5CSpyHI=')

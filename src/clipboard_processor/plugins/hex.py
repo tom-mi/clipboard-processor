@@ -27,3 +27,7 @@ class HexPlugin(Plugin):
             except ValueError:
                 pass
         return results
+
+    @classmethod
+    def example_input(cls) -> str:
+        return '74657374'

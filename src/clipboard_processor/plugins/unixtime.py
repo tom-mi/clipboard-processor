@@ -1,5 +1,7 @@
+import time
+from datetime import datetime, timezone
+
 from clipboard_processor.plugins._base import Plugin
-from datetime import datetime, tzinfo, timezone
 
 
 class UnixTimePlugin(Plugin):
@@ -29,3 +31,7 @@ class UnixTimePlugin(Plugin):
             except ValueError as e:
                 pass
         return []
+
+    @classmethod
+    def example_input(cls) -> str:
+        return str(int(time.time()))

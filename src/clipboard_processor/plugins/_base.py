@@ -16,3 +16,8 @@ class Plugin(abc.ABC):
     @abc.abstractmethod
     def process(self, data: str) -> [str]:
         raise NotImplementedError
+
+    @classmethod
+    @abc.abstractmethod
+    def example_input(cls) -> str:
+        raise NotImplementedError

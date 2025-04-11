@@ -29,6 +29,10 @@ class AwsAccountIdPlugin(Plugin):
                 return [account_name]
         return []
 
+    @classmethod
+    def example_input(cls) -> str:
+        return '123456789012'
+
 
 def _get_aws_account_mapping():
     aws_config = configparser.ConfigParser()

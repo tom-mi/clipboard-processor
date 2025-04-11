@@ -24,3 +24,6 @@ class UlidPlugin(Plugin):
         except ValueError:
             return []
 
+    @classmethod
+    def example_input(cls) -> str:
+        return str(ulid.ULID())
