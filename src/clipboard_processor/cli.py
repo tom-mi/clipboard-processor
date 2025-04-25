@@ -36,6 +36,8 @@ OUTPUTS = [
     UiOutput,
 ]
 
+DEFAULT_OUTPUT_TIMEOUT = 10
+
 logger = logging.getLogger(__name__)
 
 _BLUE = '\033[94m'
@@ -70,6 +72,10 @@ def main():
                         choices=available_output_names)
     parser.add_argument('--debug', action='store_true', help='Enable debug logging')
     parser.add_argument('-l', '--list', action='store_true', help='List plugins')
+    parser.add_argument('--timeout', action='store', type=int,
+                        help=f'Timeout in seconds for the output method. Default is {DEFAULT_OUTPUT_TIMEOUT} seconds. '
+                             f'Set to 0 for no timeout.',
+                        default=DEFAULT_OUTPUT_TIMEOUT)
 
     args = parser.parse_args()
 
@@ -112,7 +118,7 @@ def main():
                     title = _trim(current_value, max_length=50)
                     content = '\n'.join(results)
                     for output in outputs:
-                        output.show(title, content)
+                        output.show(title, content, timeout=args.timeout)
 
             time.sleep(0.1)
         except KeyboardInterrupt:
@@ -131,6 +137,7 @@ def _list_plugins():
             intended_doc = textwrap.indent(p.__doc__.strip(), '  ')
             print(f'{_GRAY}{intended_doc}{_RESET}\n')
         print(f'{_GRAY}  Example input: {_BLUE}{p.example_input()}{_RESET}\n')
+
 
 def _trim(s: str, max_length: int) -> str:
     return s[:max_length] + ('...' if len(s) > max_length else '')

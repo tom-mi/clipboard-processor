@@ -1,3 +1,5 @@
+from typing import Optional
+
 from clipboard_processor.output._base import Output
 
 
@@ -14,5 +16,5 @@ class StdoutOutput(Output):
     def is_available(cls):
         return True
 
-    def show(self, title: str, content: str):
+    def show(self, title: str, content: str, timeout: Optional[int] = None):
         print(f'{StdoutOutput.BOLD}{title}{StdoutOutput.RESET}\n{content}')

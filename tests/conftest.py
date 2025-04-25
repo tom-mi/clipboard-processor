@@ -16,7 +16,9 @@ def pytest_addoption(parser):
 
 @pytest.fixture
 def snapshot_path(request):
-    return request.config.rootdir.join('tests', 'snapshots', request.node.name + '.png')
+    def func(suffix=''):
+        return request.config.rootdir.join('tests', 'snapshots', request.node.name + suffix + '.png')
+    return func
 
 
 def pytest_configure(config):

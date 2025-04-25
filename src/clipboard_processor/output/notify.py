@@ -1,3 +1,5 @@
+from typing import Optional
+
 from clipboard_processor.output._base import Output
 
 
@@ -20,5 +22,6 @@ class NotifyOutput(Output):
         except ImportError:
             return False
 
-    def show(self, title: str, content: str):
-        self._notifier.send(title, content)
+    def show(self, title: str, content: str, timeout: Optional[int] = None):
+        notification_timeout = timeout if timeout else -1
+        self._notifier.send(title, content, timeout=notification_timeout)

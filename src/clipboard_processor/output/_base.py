@@ -1,4 +1,5 @@
 import abc
+from typing import Optional
 
 
 class Output(abc.ABC):
@@ -14,5 +15,5 @@ class Output(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def show(self, title: str, content: str):
+    def show(self, title: str, content: str, timeout: Optional[int] = None):
         raise NotImplementedError
