@@ -1,4 +1,5 @@
 import signal
+import subprocess
 import time
 
 import pytest
@@ -36,6 +37,27 @@ def test_cli_with_default_plugins():
     assert proc.returncode == 0
     assert BASE64_DATA in output[0]
     assert output[1].strip() == BASE64_DECODED
+
+
+def test_cli_handles_non_utf8_data_gracefully(tmp_path):
+    # given
+    data_file = tmp_path / 'data.bin'
+    data_file.write_bytes(b'\xFF\xFE\xFD\xFC\xFB\xFA\xF9\xF8')  # type: ignore
+
+    # when
+    with run_cli('--output', 'stdout') as proc:
+        time.sleep(SLEEP_STARTUP_SECONDS)
+        subprocess.run(['xclip', '-selection', 'clipboard', data_file], encoding='utf-8', check=True)
+        time.sleep(SLEEP_PROCESSING_SECONDS)
+
+        proc.send_signal(signal.SIGINT)
+
+        output = proc.stdout.readlines()
+        error = proc.stderr.readlines()
+
+    assert proc.returncode == 0
+    assert len(output) == 0
+    assert len(error) == 0
 
 
 def test_cli_with_plugin_matching_input():

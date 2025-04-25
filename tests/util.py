@@ -6,7 +6,8 @@ import pyperclip
 
 @contextmanager
 def run_cli(*args):
-    with subprocess.Popen(['clipboard-processor'] + list(args), stdout=subprocess.PIPE, encoding='utf-8') as proc:
+    with subprocess.Popen(['clipboard-processor'] + list(args), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                          encoding='utf-8') as proc:
         yield proc
 
 

@@ -17,4 +17,7 @@ class PyperclipInput(Input):
         return pyperclip is not None
 
     def read(self) -> str:
-        return pyperclip.paste()
+        try:
+            return pyperclip.paste()
+        except UnicodeDecodeError:
+            return ''

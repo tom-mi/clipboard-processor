@@ -14,4 +14,11 @@ class XclipPrimaryInput(Input):
         return shutil.which('xclip') is not None
 
     def read(self) -> str:
-        return subprocess.check_output(['xclip', '-o', '-selection', 'primary']).decode('utf-8')
+        try:
+            return subprocess.check_output(['xclip',
+                                            '-out',
+                                            '-selection', 'primary',
+                                            '-target', 'UTF8_STRING']).decode('utf-8')
+        except UnicodeDecodeError:
+            return ''
+
