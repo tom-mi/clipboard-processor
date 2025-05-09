@@ -68,8 +68,12 @@ features = [
 [tool.hatch.envs.dev]
 extra-dependencies = [
     "python-dbusmock",
+    "openai",
 ]
 path = ".venv"
+
+[tool.hatch.envs.dev.scripts]
+generate-demo = "scripts/generate_demo.py"
 
 [tool.hatch.envs.hatch-test]
 extra-args = ["--strict-markers", "--suite", "full"]
