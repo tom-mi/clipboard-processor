@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get install xclip libdbus-1-dev
+        run: sudo apt-get install xclip libdbus-1-dev libdbus-glib-1-dev
       - name: Install Python 3.12
         uses: actions/setup-python@v5
         with:
