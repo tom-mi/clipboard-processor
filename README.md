@@ -9,6 +9,19 @@ All parsing & decoding is done locally. The clipboard content is not sent to any
 
 ## Installation
 
+### Quickstart
+
+Install into userspace, create a userspace systemd service & enable it (via [installer script](scripts/install)):
+
+```bash
+curl -L -o install-clipboard-processor https://raw.githubusercontent.com/tom-mi/clipboard-processor/main/scripts/install
+# review & adapt the installer as needed
+chmod +x install-clipboard-processor
+./install-clipboard-processor
+```
+
+### Manual installation
+
 Some features require additional libraries to be installed (see below).
 
 Install with required dependencies only:
