@@ -125,3 +125,7 @@ In case dependencies are not synced into an existing env, try removing all envir
 ```bash
 hatch env prune
 ```
+
+### Release a new version
+
+[Draft a new release](https://github.com/tom-mi/clipboard-processor/releases/new) on GitHub.
