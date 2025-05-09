@@ -68,7 +68,7 @@ def main():
                         choices=available_plugin_names, default=[])
     parser.add_argument('-i', '--input', action='store', help='Select input method',
                         choices=available_input_names, default=available_input_names[0])
-    parser.add_argument('-o', '--output', action='append', help='Select output method. Defaults to stdout',
+    parser.add_argument('-o', '--output', action='append', help='Select output method. Defaults to ui',
                         choices=available_output_names)
     parser.add_argument('--debug', action='store_true', help='Enable debug logging')
     parser.add_argument('-l', '--list', action='store_true', help='List plugins')
