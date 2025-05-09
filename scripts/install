@@ -27,4 +27,4 @@ curl --silent --fail ${SERVICE_FILE_URL} > ${SERVICE_FILE_DESTINATION}
 
 systemctl --user daemon-reload
 systemctl --user enable clipboard-processor.service
-systemctl --user start clipboard-processor.service
+systemctl --user restart clipboard-processor.service
