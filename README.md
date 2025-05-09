@@ -7,6 +7,8 @@ e.g. parse UNIX timestamps, AWS account IDs, VINs, base64 strings and more.
 
 All parsing & decoding is done locally. The clipboard content is not sent to any external service.
 
+![demo gif](clipboard-processor-demo.gif)
+
 ## Installation
 
 ### Quickstart
