@@ -13,7 +13,7 @@ class UnixTimePlugin(Plugin):
     def is_available(cls) -> bool:
         return True
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         if len(data) in [10, 13, 16]:
             try:
                 timestamp = int(data)
@@ -28,7 +28,7 @@ class UnixTimePlugin(Plugin):
                         .isoformat()
                         .replace('+00:00', 'Z')
                         .replace('T', ' ')]
-            except ValueError as e:
+            except ValueError:
                 pass
         return []
 

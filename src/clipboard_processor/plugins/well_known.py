@@ -19,7 +19,7 @@ class WellKnownPlugin(Plugin):
     def is_available(cls) -> bool:
         return True
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         if data in self.STRINGS:
             return [self.STRINGS[data]]
         return []

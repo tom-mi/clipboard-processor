@@ -79,8 +79,8 @@ class UiOutput(Output):
             move_window()
             if timeout:
                 for i in range(FADE_OUT_STEPS_PER_S * timeout):
-                    opacity = MAX_OPACITY - (MAX_OPACITY - MIN_OPACITY) * (i / (FADE_OUT_STEPS_PER_S * timeout)) ** 4
-                    root.after(int(i * 1000 / FADE_OUT_STEPS_PER_S), set_opacity, opacity)
+                    o = MAX_OPACITY - (MAX_OPACITY - MIN_OPACITY) * (i / (FADE_OUT_STEPS_PER_S * timeout)) ** 4
+                    root.after(int(i * 1000 / FADE_OUT_STEPS_PER_S), set_opacity, o)
 
                 root.after(timeout * 1000, destroy)
 

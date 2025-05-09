@@ -26,7 +26,7 @@ class VinPlugin(Plugin):
     def is_available(cls):
         return vininfo is not None
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         if not self._regex.match(data):
             return []
         info = vininfo.Vin(data)

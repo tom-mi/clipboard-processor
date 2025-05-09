@@ -14,7 +14,7 @@ class Plugin(abc.ABC):
         return True
 
     @abc.abstractmethod
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         raise NotImplementedError
 
     @classmethod

@@ -25,7 +25,7 @@ class AwsAccountIdPlugin(Plugin):
     def is_available(cls):
         return _CONFIG_FILE.exists()
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         m = self._regex.match(data)
         if m:
             mapping = _get_aws_account_mapping()

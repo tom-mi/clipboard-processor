@@ -20,7 +20,7 @@ class CronPlugin(Plugin):
     def is_available(cls) -> bool:
         return cron_descriptor is not None
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         results = []
         try:
             cron = str(cron_descriptor.ExpressionDescriptor(expression=data, use_24hour_time_format=True))

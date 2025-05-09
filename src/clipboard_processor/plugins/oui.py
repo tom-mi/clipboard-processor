@@ -26,7 +26,7 @@ class OuiPlugin(Plugin):
     def is_available(cls) -> bool:
         return netaddr is not None
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         results = []
         if self._regex.match(data):
             if len(data) == 17:

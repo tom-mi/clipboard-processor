@@ -17,7 +17,7 @@ class Base64Plugin(Plugin):
     def is_available(cls) -> bool:
         return True
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         results = []
         for decoder in _DECODERS:
             try:

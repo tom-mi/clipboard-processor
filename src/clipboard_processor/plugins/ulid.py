@@ -19,7 +19,7 @@ class UlidPlugin(Plugin):
     def is_available(cls) -> bool:
         return ulid is not None
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         if len(data) != 26:
             return []
         try:

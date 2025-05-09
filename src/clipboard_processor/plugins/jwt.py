@@ -25,7 +25,7 @@ class JwtPlugin(Plugin):
     def is_available(cls) -> bool:
         return jwt is not None
 
-    def process(self, data: str) -> [str]:
+    def process(self, data: str) -> list[str]:
         if data.startswith('Bearer '):
             data = data[7:]
         data = self._pad_base64(data)
