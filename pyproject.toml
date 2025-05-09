@@ -55,7 +55,7 @@ Issues = "https://github.com/tom-mi/clipboard-processor/issues"
 clipboard-processor = "clipboard_processor.cli:main"
 
 [tool.hatch.envs.default]
-python = "3.12"
+python = "3.13"
 dependencies = [
     "pytest",
     "pytest-image-snapshot[pixelmatch]",
@@ -75,14 +75,14 @@ extra-args = ["--strict-markers", "--suite", "full"]
 dependencies = [
     "pytest",
     "pytest-image-snapshot[pixelmatch]",
-    "python-dbusmock; python_version == '3.12'",
+    "python-dbusmock; python_version == '3.13'",
 ]
 features = [
     "all"
 ]
 
 [[tool.hatch.envs.hatch-test.matrix]]
-python = ["3.9", "3.10", "3.11", "3.12"]
+python = ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
 [tool.hatch.envs.test-minimal]
 features = []
