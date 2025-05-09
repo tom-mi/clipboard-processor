@@ -94,6 +94,7 @@ def main():
     input_ = [i for i in INPUTS if i.name() == args.input][0]()
 
     last_value = None
+    last_error = None
     while True:
         try:
             current_value = input_.read()
@@ -120,11 +121,17 @@ def main():
                     for output in outputs:
                         output.show(title, content, timeout=args.timeout)
 
+            last_error = None
             time.sleep(0.1)
         except KeyboardInterrupt:
             break
         except Exception as e:
-            logger.warning('Error occurred during processing', exc_info=e)
+            if last_error is not None and str(e) == str(last_error):
+                time.sleep(10)  # poor man's non-exponential backoff
+            else:
+                last_error = e
+                logger.warning('Error occurred during processing. Suppressing subsequent logs of the same error',
+                               exc_info=e)
 
 
 def _list_plugins():
