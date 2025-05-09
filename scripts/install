@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+RED='\033[0;31m'
+RESET='\033[0m'
+SERVICE_FILE_URL=https://raw.githubusercontent.com/tom-mi/clipboard-processor/refs/heads/main/systemd/clipboard-processor.service
+SERVICE_FILE_DESTINATION=~/.config/systemd/user/clipboard-processor.service
+
+trap 'set +x; echo -e "${RED}Error on line $LINENO, failed to install clipboard-processor${RESET}"; exit 1' ERR
+
+set -x
+
+pip install --user clipboard-processor[all]
+
+curl --silent --fail ${SERVICE_FILE_URL} > ${SERVICE_FILE_DESTINATION}
+
+systemctl --user daemon-reload
+systemctl --user enable clipboard-processor.service
+systemctl --user start clipboard-processor.service
